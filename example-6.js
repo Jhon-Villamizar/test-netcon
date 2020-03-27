@@ -3,7 +3,25 @@ import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
 cleanConsole(6, companies);
-console.log('---- EXAMPLE 6 --- ', 'Put here your function');
+
+// main function
+const main = (companies) => {
+  var newObject = createNewList(companies);
+	return newObject;
+};
+
+// function tha create a new object
+const createNewList = (companies) => {
+  var newObject = {};
+  companies.forEach(company => {
+		company.users.forEach(user => {
+      newObject[`${user.firstName}${user.lastName}${user.age}`] = user.car; 
+		});
+  });
+  return newObject;
+}
+
+console.log('---- EXAMPLE 6 --- ', main(companies));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

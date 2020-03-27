@@ -1,8 +1,67 @@
-import {createAll, cleanConsole} from './data';
+import { createAll, cleanConsole } from "./data";
 const companies = createAll();
-
 cleanConsole(1, companies);
-console.log('---- EXAMPLE 1 --- ', 'Put here your function');
+
+// main function
+const main = companies => {
+	orderCompanies(companies);
+	companies.forEach(company => {
+		company.name = firstWordCapital(company.name)
+		company.users.forEach(user => {
+
+			if (user.firstName == undefined){
+				user.firstName = "";
+			}
+			if (user.lastName == undefined){
+				user.lastName = "";
+			}
+			user.firstName = firstWordCapital(user.firstName);
+			user.lastName = firstWordCapital(user.lastName);
+		});
+		orderUsers(company.users);
+	});
+	return companies;
+	
+};
+
+// function that replace first word
+const firstWordCapital = name => {
+	return name.replace(/\b\w/g, firstWord => firstWord.toUpperCase());
+}
+
+// function that sort by users amount
+const orderCompanies = companies => {
+	companies = companies.sort((x, y) => y.users.length - x.users.length);
+}
+
+// function that sort alphabeticly by first name
+const orderUsers = users => {
+	users = users.sort((x, y) => {
+		if (x.firstName > y.firstName) {
+			return 1;
+		}
+		if (x.firstName < y.firstName) {
+			return -1;
+		}
+		return 0;
+	});
+}
+
+// function that sort alphabeticly by first name
+export const hasFirstWordUpperCase = user => {
+	if (!user.firstName || !user.lastName) {
+		return false;
+	}
+
+	var wordName = user.firstName.split('')[0];
+	var wordLastName = user.lastName.split('')[0];
+	if (wordName == wordName.toUpperCase() && wordLastName == wordLastName.toUpperCase()) {
+		return true;
+	}
+	return false;
+}
+
+console.log("---- EXAMPLE 1 --- ", main(companies));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

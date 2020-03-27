@@ -1,9 +1,18 @@
 import {cleanConsole, createAll} from './data';
-
+import {hasFirstWordUpperCase} from './example-1';
 const companies = createAll();
-
 cleanConsole(3, companies);
-console.log('---- EXAMPLE 3 --- ', 'Put here your function');
+
+// main function
+const main = companies => {
+  var validator = companies.map(company => {
+		return company.users.map(user => hasFirstWordUpperCase(user));
+	});
+	return validator;
+	
+};
+
+console.log('---- EXAMPLE 3 --- ', main(companies));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

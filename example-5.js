@@ -1,8 +1,10 @@
 import {cleanConsole, createAll} from './data';
+import {createNewObject} from './example-4.js';
 const companies = createAll();
 
 cleanConsole(5, companies);
-console.log('---- EXAMPLE 5 --- ', 'Put here your function');
+
+console.log('---- EXAMPLE 5 --- ', createNewObject(companies));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL

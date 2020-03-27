@@ -3,12 +3,57 @@ import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
 cleanConsole(7, companies);
-console.log('---- EXAMPLE 7 part 1 --- ', 'Put here your function');
-console.log('---- EXAMPLE 7 part 2 --- ', 'Put here your function');
+
+
+
+// function that return name of campany by id
+const findById = (companies, id) => {
+  var name = companies.filter(company => company.id == id)[0].name;
+  return name;
+};
+
+// function that delete company by id
+const deleteById = (companies, id) => {
+  var index = companies.findIndex(company => company.id == id);
+  companies.splice(index, 1);
+  return companies;
+};
+
+// function that create a new user by id
+const insertNewUserById = (companies, id) => {
+  var company = companies.filter(company => company.id == id)[0];
+  company.users = company.users.sort((a, b) => a.id - b.id);
+  var lastId = company.users[company.users.length-1].id;
+  var newUser = {
+    firstName: "Juan",
+    lastName: "Delgado",
+    age: 35,
+    car: true,
+    id: lastId + 1, 
+    company: company.name
+  };
+  company.users.push(newUser);
+  company.usersLength ++;
+	return companies;	
+};
+
+// function that delete a by id of company and user
+const deleteUserById = (companies, idCompany, idUser) => {
+  var company = companies.filter(company => company.id == idCompany)[0];
+  var index = company.users.findIndex(company => company.id == idUser);
+  company.users.splice(index, 1);
+  company.usersLength --;
+	return companies;	
+};
+
+
+// main(companies, 2)
+console.log('---- EXAMPLE 7 part 1 --- ', findById(companies, 1));
+console.log('---- EXAMPLE 7 part 2 --- ', deleteById(companies, 1));
 console.log('---- EXAMPLE 7 part 3 --- ', 'Put here your function');
-console.log('---- EXAMPLE 7 part 4 --- ', 'Put here your function');
+console.log('---- EXAMPLE 7 part 4 --- ', insertNewUserById(companies, 4));
 console.log('---- EXAMPLE 7 part 5 --- ', 'Put here your function');
-console.log('---- EXAMPLE 7 part 6 --- ', 'Put here your function');
+console.log('---- EXAMPLE 7 part 6 --- ', deleteUserById(companies, 3, 3));
 console.log('---- EXAMPLE 7 part 7 --- ', 'Put here your function');
 console.log('---- EXAMPLE 7 part 8 --- ', 'Put here your function');
 console.log('---- EXAMPLE 7 part 9 --- ', 'Put here your function');

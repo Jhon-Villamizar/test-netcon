@@ -2,7 +2,29 @@ import {cleanConsole, createAll} from './data';
 const companies = createAll();
 
 cleanConsole(2, companies);
-console.log('---- EXAMPLE 2 --- ', 'Put here your function');
+
+// main function
+const main = (companies, hasCar) => {
+	companies.forEach(company => {
+    filterByHasCar(company, hasCar);
+    changeLength(company);
+  });
+  
+	return companies;
+};
+
+// function that filter by hascar
+const filterByHasCar = (company, hasCar) => {
+  company.users = company.users.filter(user => user.car === hasCar);
+};
+
+// function that change length of usersLength
+const changeLength = (company) => {
+  company.usersLength = company.users.length;
+};
+
+
+console.log('---- EXAMPLE 2 --- ', main(companies, true));
 
 // -----------------------------------------------------------------------------
 // INSTRUCCIONES EN ESPAÑOL
